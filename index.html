@@ -101,7 +101,7 @@
 <body class="fullpage-bg">
   <header class="hero">
     <div>
-      <h1>Hi, I'm Sai Krishna</h1>
+      <h1>Hi, I'm Sai Krishna who loves <span class="auto-type"></span></h1>
       <p class="text-shadow">Common patterns: full page, hero section with overlay, contain vs cover, repeat, multiple backgrounds.</p>
       <a class="btn" href="#how" title="Jump to code">See the CSS snippets</a>
     </div>
@@ -172,5 +172,22 @@ body {
       </ul>
     </section>
   </main>
+<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <!-- Element to contain animated typing -->
+  <span id="element"></span>
+
+  <!-- Load library from the CDN -->
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+  <!-- Setup and start animation! -->
+  <script>
+    var typed = new Typed(".auto-type",{
+      strings: ["Cartoons", "Marvel"],
+      typeSpeed: 30,
+      backSpeed: 30,
+      loop: true
+    });
+  </script>
+</body>
 </body>
 </html>
