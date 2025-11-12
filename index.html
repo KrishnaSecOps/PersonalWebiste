@@ -5,63 +5,255 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sai's Website</title>
   <style>
-    /* 1) Full-page background on <body> */
+    /* Base layout */
     html, body {
       height: 100%;
       margin: 0;
+      scroll-behavior: smooth; /* smooth scrolling site-wide */
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", "Helvetica Neue", Arial;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-  
-    h1, h2, p, code { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji'; }
-    h1 { text-align:center; color:#0e1629; }
-
-    /* Background on a specific section (hero) with dark overlay for text */
+    /* Hero area */
     .hero {
       position: relative;
-      min-height: 50vh;
+      min-height: 60vh;
       display: grid;
       place-items: center;
       color: #fff;
       text-align: center;
       padding: 40px 20px;
-      linear-gradient(to bottom right, rgba(0,0,0,.55), rgba(0,0,0,.35)),
-      background-size: auto;
+      background: linear-gradient(135deg, rgba(10,25,47,0.95), rgba(46,170,208,0.15));
+      background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
     }
 
-
-    /* Utility classes for text contrast */
-    .text-shadow {
-      color: #000;
-      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7);
-      inline-size: max-content;
-      margin: 0 auto;
-      font-weight: initial;
-
+    /* Banner (top of page) */
+    .banner {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 20px;
+      box-sizing: border-box;
+      background: rgba(255,255,255,0.95);
+      color: #0e1629;
+      box-shadow: 0 6px 20px rgba(12,20,30,0.12);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:600;
+    }
+    .brand .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #2ecc71; /* live/online green */
+      display: inline-block;
+      position: relative;
+      flex: none;
+      will-change: transform, opacity, box-shadow;
+      /* subtle inner glow */
+      box-shadow: 0 0 6px rgba(46,204,113,0.18);
+      /* continuous gentle pulse */
+      animation: dot-pulse 2s infinite;
     }
 
+    /* expanding translucent ring to indicate "live" */
+    .brand .dot::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(46,204,113,0.12);
+      pointer-events: none;
+      animation: dot-ripple 2s infinite;
+    }
+
+    /* small heartbeat for the core dot */
+    @keyframes dot-pulse {
+      0%   { transform: scale(1);   opacity: 1; }
+      50%  { transform: scale(1.08); opacity: 0.95; }
+      100% { transform: scale(1);   opacity: 1; }
+    }
+
+    /* ripple that expands and fades */
+    @keyframes dot-ripple {
+      0%   { transform: translate(-50%, -50%) scale(0.6); opacity: 0.9; }
+      70%  { transform: translate(-50%, -50%) scale(1.4); opacity: 0; }
+      100% { transform: translate(-50%, -50%) scale(1.4); opacity: 0; }
+    }
+
+    .nav-actions {
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .btn {
+      display:inline-block;
+      padding:8px 14px;
+      border-radius:8px;
+      text-decoration:none;
+      color:#0e1629;
+      background: transparent;
+      border: 1px solid rgba(12,20,30,0.08);
+      font-weight:600;
+      transition: all .18s ease;
+      cursor:pointer;
+    }
+    .btn.primary {
+      background: linear-gradient(90deg,#2eaad0,#2b8fe0);
+      color: white;
+      border: none;
+      box-shadow: 0 6px 18px rgba(46,170,208,0.18);
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:active { transform: translateY(0); }
+
+    /* Main title styles inside hero */
+    h1 { margin:0; color:#fff; font-size: clamp(20px, 3.6vw, 34px); }
+    h2 { margin:8px 0 0; color:#e6f7fb; font-weight:600; }
+
+    .text-shadow {
+      text-shadow: 0 6px 32px rgba(0,0,0,0.45);
+      display:inline-block;
+      padding:6px 12px;
+      border-radius:8px;
+      background: rgba(255,255,255,0.03);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 640px) {
+      .banner { padding:10px 12px; }
+      .nav-actions { width:100%; justify-content:flex-end; }
+      .btn { padding:8px 10px; }
+      .brand { gap:8px; font-size:14px; }
+    }
+
+    /* Simple content sections for anchors */
+    .section {
+      padding: 60px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .section h3 { margin-top:0; color:#0e1629; }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(10,20,30,0.06);
+    }
   </style>
 </head>
 <body>
 
-  <header class="hero">
+  <!-- Top banner with navigation buttons -->
+  <div class="banner" role="navigation" aria-label="Primary">
+    <div class="brand" aria-hidden="false">
+      <span class="dot" aria-hidden="true"></span>
+      <span>Bengaluru, India</span>
+    </div>
+
+    <div class="nav-actions" role="menu" aria-label="Quick links">
+      <div style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); display:flex; gap:10px; align-items:center;">
+            <a class="btn" href="#experience" role="button">About</a>
+            <a class="btn" href="#Skills" role="button">Skills</a>
+            <a class="btn" href="#experience" role="button">Experience</a>
+            <a class="btn" href="#experience" role="button">Projects</a>
+            <a class="btn" href="#contact" role="button">Contact</a>
+          </div>
+
+          <style>
+            /* compact pill-style bar that transitions when the page is scrolled */
+            #quickbar {
+              display: flex;
+              gap: 8px;
+              align-items: center;
+              padding: 8px;
+              border-radius: 999px;
+              background: rgba(255,255,255,0.08);
+              box-shadow: 0 8px 24px rgba(12,20,30,0.06);
+              backdrop-filter: blur(6px);
+              border: 1px solid rgba(255,255,255,0.06);
+              transition: transform .18s ease, padding .18s ease, background .18s ease, box-shadow .18s ease;
+              will-change: transform, padding;
+            }
+
+            /* smaller, tighter appearance when scrolled */
+            #quickbar.scrolled {
+              transform: scale(0.94);
+              padding: 6px;
+              background: rgba(255,255,255,0.06);
+              box-shadow: 0 6px 18px rgba(12,20,30,0.05);
+            }
+
+            /* slightly smaller buttons inside the compact state */
+            #quickbar.scrolled .btn { padding: 6px 10px; font-size: 0.95em; }
+
+            /* ensure it remains usable on small screens */
+            @media (max-width: 640px) {
+              #quickbar {
+                width: calc(100% - 32px);
+                justify-content: center;
+                padding: 6px;
+              }
+              #quickbar .btn { padding: 6px 8px; }
+            }
+          </style>
+
+          <script>
+            (function () {
+              const bar = document.getElementById('quickbar');
+              if (!bar) return;
+              let ticking = false;
+
+              function onScroll() {
+                if (ticking) return;
+                ticking = true;
+                window.requestAnimationFrame(() => {
+                  const y = window.scrollY || window.pageYOffset || 0;
+                  if (y > 40) bar.classList.add('scrolled');
+                  else bar.classList.remove('scrolled');
+                  ticking = false;
+                });
+              }
+
+              // initial state
+              onScroll();
+              window.addEventListener('scroll', onScroll, { passive: true });
+            })();
+          </script>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero" role="banner">
     <div>
-      <h1><span style="color:#000">Hi, I'm</span> <span style="color:rgb(46, 170, 208)">Sai Krishna</span></h1>
-      <h2><span id="rotating-role-text" style="color:#120be1; display:inline-block; opacity:1; transition:opacity .1s ease;">Cloud Architect</span></h2>
-      <style>
-        /* enable smooth scrolling site-wide */
-        html { scroll-behavior: smooth; }
-        /* optimize opacity transitions */
-        #rotating-role-text { will-change: opacity; }
-      </style>
+      <h1><span style="color:#e6f7fb">Hi, I'm</span> <span style="color:#2eaad0">Sai Krishna</span></h1>
+      <h2 class="text-shadow"><span id="rotating-role-text" style="display:inline-block; opacity:1; transition:opacity .12s ease;">Cloud Architect</span></h2>
+
       <script>
       (function(){
         const roles = ["DevOps Leader","Platform Engineer","Automation Enthusiast"];
         const el = document.getElementById('rotating-role-text');
         let i = 1;
-        const fadeDuration = 100;
-        const visibleDuration = 3800;
+        const fadeDuration = 120;
+        const visibleDuration = 3500;
         el.textContent = roles[0];
         el.style.opacity = 1;
         setInterval(() => {
@@ -74,19 +266,46 @@
         }, visibleDuration + fadeDuration);
       })();
       </script>
-      <!-- <a class="btn" href="#how" title="Jump to code">See the CSS snippets</a> -->
     </div>
   </header>
-   
-  <!-- /* Typing Animation */ -->
+
+  <!-- Example sections for the banner links -->
+  <main>
+    <section id="skills" class="section" aria-labelledby="skills-heading">
+      <h3 id="skills-heading">Skills</h3>
+      <div class="card">
+        <p>Cloud platforms: AWS, Azure, GCP. CI/CD, IaC (Terraform, CloudFormation), Kubernetes, automation, monitoring.</p>
+      </div>
+    </section>
+
+    <section id="experience" class="section" aria-labelledby="experience-heading">
+      <h3 id="experience-heading">Experience</h3>
+      <div class="card">
+        <p>10+ years building reliable cloud platforms, leading cross-functional teams, and shipping automation at scale.</p>
+      </div>
+    </section>
+
+    <section id="contact" class="section" aria-labelledby="contact-heading">
+      <h3 id="contact-heading">Contact</h3>
+      <div class="card">
+        <p>Email: <a href="mailto:gandlurusaikrishna.devops@gmail.com">gandlurusaikrishna.devops@gmail.com</a></p>
+        <p>LinkedIn / GitHub links can go here.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Optional typed script (left from original) -->
   <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
   <script>
-    var typed = new Typed(".auto-type",{
-      strings: ["Cartoons", "Marvel"],
-      typeSpeed: 30,
-      backSpeed: 30,
-      loop: true
-    });
+    // Example usage retained; remove if not needed
+    if (window.Typed) {
+      new Typed(".auto-type",{
+        strings: ["Cartoons", "Marvel"],
+        typeSpeed: 30,
+        backSpeed: 30,
+        loop: true
+      });
+    }
   </script>
 </body>
 </html>
