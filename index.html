@@ -122,18 +122,27 @@
     /* Hero area */
     .hero {
       position: relative;
-      min-height: 60vh;
-      display: grid;
-      place-items: center;
+      min-height: calc(100vh - 80px); /* viewport minus banner (approx) */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; /* centers content vertically and horizontally */
       color: #fff;
       text-align: center;
-      padding: 40px 20px;
-      /* make hero slightly translucent so the page background shows through */
-      /* background: linear-gradient(135deg, rgba(7,17,36,0.75), rgba(46,170,208,0.06)); */
+      padding: 20px 12px;
       background-size: cover;
       background-position: center;
       background-repeat: repeat;
-      backdrop-filter: blur(px);
+      backdrop-filter: blur(6px);
+      box-sizing: border-box;
+    }
+
+    /* make hero even smaller on narrow screens */
+    @media (max-width: 640px) {
+      .hero {
+        min-height: calc(100vh - 64px);
+        padding: 12px 8px;
+      }
     }
 
     /* Banner (top of page) */
@@ -346,8 +355,10 @@
     </div>
   </div>
 
+
+
   <!-- Hero -->
-  <header class="hero" role="banner">
+  <header class="hero" role="banner" style="padding-top:24px; padding-bottom:24px;">
     <div>
       <div class="nav-actions" role="menu" aria-label="Quick links">
         <div id="quickbar" role="toolbar" aria-label="Quick links" style="position:fixed; top:12px; left:50%; transform:translateX(-50%); z-index:60; display:flex; gap:10px; align-items:center; padding:8px; border-radius:999px; background:rgba(255,255,255,0.08); box-shadow:0 8px 24px rgba(12,20,30,0.06); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.06);">
@@ -361,8 +372,7 @@
       </div>
     </div>
       <h1><span style="color:#e6f7fb">Hi, I'm</span> <span style="color:#2eaad0">Sai Krishna</span></h1>
-
-      <h2 class="text-shadow"><span id="rotating-role-text" style="display:inline-block; opacity:1; transition:opacity .12s ease;">Cloud Architect</span></h2>
+      <h2 class="text-shadow"><span id="rotating-role-text" style="display:inline-block; style=font-size:0.1rem; opacity:1; transition:opacity .12s ease;">Cloud Architect</span></h2>
 
       <script>
       (function(){
@@ -384,7 +394,7 @@
       })();
       </script>
       <div class="brand" aria-hidden="false" style="font-size:0.8rem; text-align:center; width:100%; display:block; margin:12px auto;">
-        <span class="dot" aria-hidden="true" style="vertical-align:middle; margin-right:8px;"></span>
+        <span class="dot" aria-hidden="true" style="vertical-align:middle; margin-right:2px;"></span>
         <span style="display:inline-block; vertical-align:middle;">Currently in Bengaluru, India</span>
       </div>
     </div>
