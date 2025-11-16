@@ -18,6 +18,20 @@
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
     }
+
+/* Page fade-in effect */ 
+    .fade-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 2.0s ease;
+    }
+
+    .fade-scroll.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
 /* Make sure that padding behaves as expected */
 /* * {box-sizing:border-box} */
 
@@ -136,6 +150,56 @@
       backdrop-filter: blur(6px);
       box-sizing: border-box;
     }
+    .bannerskills {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr); /* 6 columns */
+      gap: 18px;
+      max-width: 900px;
+      margin: 30px auto;
+    }
+
+    .box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      border-radius: 25px;
+      padding: 12px 14px;   /* ↓ very small padding = no corner gaps */
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      transition: 0.3s;
+      width: 140px;         /* optional – controls the card width */
+      height: 150px;        /* optional – keeps it equal look */
+    }
+
+    .box img {
+      width: 55px;
+      height: 55px;
+      display: block;
+      margin: 0;
+    }
+
+    .box p {
+      margin: 4px 0 0 0;   /* ↓ less space between logo & text */
+      font-size: 16px;
+      font-weight: 600;
+      color: #000;
+    }
+
+
+
+
+    .box:hover {
+     transform: scale(1.05);
+      background: #c3ced2;
+      color: #0e1629;
+      box-shadow: 0px 6px 16px rgba(0,0,0,0.4);
+    }
+
+
 
     /* make hero even smaller on narrow screens */
     @media (max-width: 640px) {
@@ -163,7 +227,7 @@
       backdrop-filter: blur(6px);
     }
     .brand {
-      display:flex;
+      display: grid;
       align-items:center;
       gap:10px;
       font-weight:600;
@@ -371,16 +435,16 @@
         </div>
       </div>
     </div>
-      <h1><span style="color:#e6f7fb">Hi, I'm</span> <span style="color:#2eaad0">Sai Krishna</span></h1>
-      <h2 class="text-shadow"><span id="rotating-role-text" style="display:inline-block; style=font-size:0.1rem; opacity:1; transition:opacity .12s ease;">Cloud Architect</span></h2>
+      <h1 style="font-size: 60px;"><span style="color:#e6f7fb">Hi, I'm</span> <span style="color:#2eaad0">Sai Krishna</span></h1>
+      <h3 class="text-shadow"><span id="rotating-role-text" style="display:inline-block; style=font-size:0.1rem; opacity:1; transition:opacity .12s ease;">Cloud Architect</span></h3>
 
       <script>
       (function(){
-        const roles = ["DevOps Leader","Platform Engineer","Automation Enthusiast"];
+        const roles = ["DevOps Lead","Platform Engineer","Automation Enthusiast"];
         const el = document.getElementById('rotating-role-text');
         let i = 1;
-        const fadeDuration = 120;
-        const visibleDuration = 3500;
+        const fadeDuration = 200;
+        const visibleDuration = 3000;
         el.textContent = roles[0];
         el.style.opacity = 1;
         setInterval(() => {
@@ -409,22 +473,48 @@
         <p>To be added</p>
       </div>
     </section>
-    <section id="skills" class="section" aria-labelledby="skills-heading">
+    <section id="skills" class="" aria-labelledby="skills-heading">
       <h3 id="skills-heading" class="section-skills">Technical Skills</h3>
-      <div>
-        <p style="color:#ffffff">AWS</p>
-        <div class="container">
-          <div class="skills aws">90%</div>
-        </div>
-        <p style="color:#ffffff">Docker</p>
-        <div class="container">
-          <div class="skills docker">40%</div>
-        </div>
-        <p style="color:#ffffff">K8s</p>
-        <div class="container">
-          <div class="skills k8s">50%</div>
-        </div>
-      </div>
+<div class="bannerskills">
+  <div class="box">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="">
+    <p>AWS</p>
+  </div>
+
+
+  <div class="box">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node Logo">
+    <p>Node.js</p>
+  </div>
+
+  <div class="box">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" alt="Linux Logo">
+    <p>Linux</p>
+  </div>
+
+  <div class="box">
+    <img src="" alt="GitHub Logo">
+    <p>GitHub</p>
+  </div>
+  <div class="box">
+    <img src="https://www.docker.com/wp-content/uploads/2022/03/Moby-logo.png" alt="Docker Logo">
+    <p>Docker</p>
+  </div>
+  <div class="box">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Kubernetes_logo_without_workmark.svg" alt="Kubernetes Logo">
+    <p>Kubernetes</p>
+</div>
+
+  <div class="box">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML Logo">
+    <p>HTML</p>
+  </div>
+
+  <div class="box">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS Logo">
+    <p>CSS</p>
+  </div>
+
     </section>
 
     <section id="experience" class="section" aria-labelledby="experience-heading">
@@ -463,5 +553,20 @@
       });
     }
   </script>
+<script>
+  const elements = document.querySelectorAll('.fade-scroll');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  elements.forEach(el => observer.observe(el));
+</script>
+
+
 </body>
 </html>
