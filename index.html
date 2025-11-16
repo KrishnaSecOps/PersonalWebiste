@@ -431,6 +431,9 @@
           <a class="btn" href="#experience" role="button">Experience</a>
           <a class="btn" href="#experience" role="button">Projects</a>
           <a class="btn" href="#contact" role="button">Contact</a>
+          <button id="themeToggle" class="btn"></button>
+
+          
         </div>
       </div>
     </div>
@@ -439,43 +442,32 @@
 
 <script>
 (function () {
-  // roles + icons
+  /* -------------------------
+     ROLE ROTATION + ICONS
+  -------------------------- */
   const roles = [
-    { text: "DevOps Engineer", icon: "🔧" },
-    { text: "Platform Engineer", icon: "🏗️" },
-    { text: "Automation Enthusiast", icon: "🤖" }
+    { text: "DevOps Engineer", icon: "<span style='font-size:20px;'>🔧</span>" },
+    { text: "Platform Engineer", icon: "<span style='font-size:20px;'>🏗️</span>" },
+    { text: "Automation Enthusiast", icon: "<span style='font-size:20px;'>🤖</span>" }
   ];
 
   const el = document.getElementById("rotating-role-text");
   let index = 0;
 
   function fadeOut(element, duration, callback) {
-    let opacity = 1;
-    let interval = 40;
-    let gap = interval / duration;
-
+    let opacity = 1, interval = 40, gap = interval / duration;
     let fading = setInterval(() => {
       opacity -= gap;
-      if (opacity <= 0) {
-        opacity = 0;
-        clearInterval(fading);
-        callback();
-      }
+      if (opacity <= 0) { opacity = 0; clearInterval(fading); callback(); }
       element.style.opacity = opacity;
     }, interval);
   }
 
   function fadeIn(element, duration) {
-    let opacity = 0;
-    let interval = 40;
-    let gap = interval / duration;
-
+    let opacity = 0, interval = 40, gap = interval / duration;
     let fading = setInterval(() => {
       opacity += gap;
-      if (opacity >= 1) {
-        opacity = 1;
-        clearInterval(fading);
-      }
+      if (opacity >= 1) { opacity = 1; clearInterval(fading); }
       element.style.opacity = opacity;
     }, interval);
   }
@@ -488,13 +480,39 @@
     });
   }
 
-  // initial state
   el.innerHTML = roles[0].icon + " " + roles[0].text;
   el.style.opacity = 1;
-
   setInterval(rotateText, 3000);
+
+  /* -------------------------
+     LIGHT / DARK THEME TOGGLE
+  -------------------------- */
+  const toggleBtn = document.getElementById("themeToggle");
+
+  // Initial state
+  let darkMode = false;
+
+  function applyTheme() {
+    if (darkMode) {
+      document.body.style.background = "#111";
+      document.body.style.color = "white";
+      toggleBtn.innerHTML = "☀️";  // Sun icon for light mode
+    } else {
+      document.body.style.background = "white";
+      document.body.style.color = "black";
+      toggleBtn.innerHTML = "🌙";  // Moon icon for dark mode
+    }
+  }
+
+  toggleBtn.addEventListener("click", () => {
+    darkMode = !darkMode;
+    applyTheme();
+  });
+
+  applyTheme(); // apply initial
 })();
 </script>
+
 
 
       <div class="brand" aria-hidden="false" style="font-size:0.6rem; text-align:center; width:100%; display:block; margin:1px auto;">
@@ -606,7 +624,6 @@
 
   elements.forEach(el => observer.observe(el));
 </script>
-
 
 </body>
 </html>
