@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sai's Website</title>
   <style>
+    :root {
+  --bg-color: #ffffff;
+  --text-color: #111;
+  --card-bg: #f3f3f3;
+  --accent: #2eaad0;
+}
+.dark {
+  --bg-color: #0b1326;
+  --text-color: #e6f7fb;
+  --card-bg: #101a33;
+  --accent: #2eaad0;
+}
+
+
     /* Base layout */
     html, body {
       min-height: 100%;
@@ -18,6 +32,132 @@
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
     }
+    /* Scroll Progress Bar */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 0%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px rgba(255,255,255,0.3);
+  transition: height 0.2s ease-out;
+}
+
+
+.exp-item {
+  position: relative;
+  margin-bottom: 60px;
+}
+
+
+
+.exp-company {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.exp-location {
+  font-weight: 400;
+  color: #777;
+}
+
+.exp-role {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.exp-date {
+  color: #555;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.exp-desc {
+  color: #bb2222;
+  line-height: 1.6;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* Center container */
+.experience-container {
+  max-width: 800px;     /* adjust width as needed */
+  margin: 0 auto;        /* centers horizontally */
+  padding: 40px 20px;
+}
+
+/* Timeline styles */
+.exp-item {
+  position: relative;
+  margin-bottom: 50px;
+  padding-left: 40px;
+}
+
+.exp-item::before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 8px;
+  width: 10px;
+  height: 10px;
+  background: #2eaad0;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(46,170,208,0.5);
+}
+
+
+
+.exp-item {
+  position: relative;
+  margin-bottom: 60px;
+}
+
+.exp-company {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.exp-location {
+  font-weight: 400;
+  color: #777;
+}
+.exp-role {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.exp-date {
+  color: #555;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+.exp-desc {
+  color: #555;
+  line-height: 1.6;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+.exp-skills span {
+  display: inline-block;
+  padding: 6px 14px;
+  background: #121111;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 14px;
+  margin: 5px;
+}
+
+
+
+
 
 /* Page fade-in effect */ 
     .fade-scroll {
@@ -120,7 +260,7 @@
       min-height: 0%;
       height: 100%;
       margin: 0;
-      background-color: #071124;
+      background-color: var(--bg-color);
       background-image:
       radial-gradient(ellipse at 10% 10%, rgba(46,170,208,0.06) 0%, rgba(46,170,208,0) 25%),
       linear-gradient(180deg, #071124 0%, #0b2b3a 40%, #071124 100%),
@@ -130,7 +270,7 @@
       background-attachment: fixed, fixed, fixed;
       background-size: cover, cover, 160px 160px;
       background-position: center center, center center, center;
-      color: #e6f7fb;
+      color: var(--text-color);
     }
 
     /* Hero area */
@@ -163,7 +303,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: #ffffff;
+      background: var(--card-bg);
+      color: var(--text-color);
       border-radius: 25px;
       padding: 12px 14px;   /* ↓ very small padding = no corner gaps */
       text-align: center;
@@ -288,7 +429,7 @@
       padding:8px 14px;
       border-radius:8px;
       text-decoration:none;
-      color:#dfe2e8;
+      color: var(--text-color);
       background: transparent;
       border: 0px solid rgba(201, 214, 231, 0.08);
       font-weight:600;
@@ -349,6 +490,8 @@
   </style>
 </head>
 <body>
+  <div id="scroll-progress"></div>
+
 
   <!-- Top banner with navigation buttons -->
   <div  role="navigation" aria-label="Primary">
@@ -525,6 +668,8 @@
   <!-- Example sections for the banner links -->
   <main>
 
+    
+
     <section id="about" class="section" aria-labelledby="experience-heading">
       <h3 id="experience-heading">About Me</h3>
       <div class=".aws">
@@ -575,12 +720,41 @@
 
     </section>
 
-    <section id="experience" class="section" aria-labelledby="experience-heading">
-      <h3 id="experience-heading">Experience</h3>
-      <div class=".aws">
-        <p>To be added</p>
+<section id="experience">
+  <div class="experience-container">
+      
+    <h3 id="skills-heading" class="section-skills">Experience</h3>
+    
+
+    <div class="experience">
+
+      <!-- Experience #1 -->
+      <div class="exp-item">  
+        <div class="exp-timeline-dot"></div>
+
+        <h2 class="exp-company">Capgemini</h2>
+        <h4 class="exp-role">Senior DevOps Engineer</h4>
+        <p class="exp-date">📅 Oct 2021 – Present</p>
+        <h4 class="exp-location">(Bengaluru, India)</h4>
+        
+
+        <p class="exp-desc">
+          Leading the DevOps function for a large-scale travel platform...
+        </p>
+
+        <div class="exp-skills">
+          <span>AWS</span>
+          <span>Kubernetes</span>
+          <span>EKS</span>
+          <span>Kafka</span>
+          <span>Elasticsearch</span>
+          <span>Jira</span>
+        </div>
       </div>
-    </section>
+  </div>
+</section>
+
+
 
         <section id="experience" class="section" aria-labelledby="experience-heading">
       <h3 id="experience-heading">Projects</h3>
@@ -624,6 +798,25 @@
 
   elements.forEach(el => observer.observe(el));
 </script>
+<script>
+  window.addEventListener("scroll", () => {
+    const body = document.body;
+    const html = document.documentElement;
+
+    const scrollTop = window.scrollY;
+    const docHeight = Math.max(
+      body.scrollHeight, html.scrollHeight,
+      body.offsetHeight, html.offsetHeight,
+      body.clientHeight, html.clientHeight
+    );
+
+    const winHeight = window.innerHeight;
+    const scrolled = (scrollTop / (docHeight - winHeight)) * 100;
+
+    document.getElementById("scroll-progress").style.height = scrolled + "%";
+  });
+</script>
+
 
 </body>
 </html>
