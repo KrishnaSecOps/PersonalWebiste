@@ -139,17 +139,23 @@ nav.shrink .nav-links a {
 h1 { font-size:48px; margin-bottom:6px; }
 .typing {
   font-size: 18px;
-  opacity: 0.95;
-  border-right: 3px solid rgba(77,166,255,0.9);
   white-space: nowrap;
   overflow: hidden;
   display: inline-block;
   letter-spacing: 1px;
+  min-width: 280px; /* Prevent jump but allow shrink */
+  width: fit-content;
+  max-width: 380px;
 }
 
-@keyframes typing { from{ width:0 } to{ width:380px } }
-@keyframes blink { 50%{ border-color: transparent } }
+@keyframes typing {
+  from { width: 0 }
+  to { width: 380px }   /* Matches reserved width */
+}
 
+@keyframes blink {
+  50% { border-color: transparent }
+}
 
 /* SECTIONS */
 section {
