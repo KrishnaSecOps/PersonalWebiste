@@ -38,3 +38,54 @@ for(let i=0;i<40;i++){
   p.style.opacity = Math.random();
   container.appendChild(p);
 }
+// Select all nav links
+const navLinks = document.querySelectorAll('nav a');
+
+navLinks.forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault(); // prevent default jump
+    const targetId = this.getAttribute('href').substring(1); // get section id
+    const targetSection = document.getElementById(targetId);
+
+    // Add the show class to fade in
+    targetSection.classList.add('show');
+
+    // Scroll smoothly to section
+    targetSection.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+const typingElement = document.querySelector('.typing');
+const texts = ["DevOps Engineer", "Cloud Engineer", "Problem Solver"]; // add your names
+let textIndex = 0;
+let charIndex = 0;
+let typingSpeed = 100; // typing speed in ms
+let deletingSpeed = 50;
+let delayBetweenTexts = 2000;
+
+function type() {
+  if (charIndex < texts[textIndex].length) {
+    typingElement.textContent += texts[textIndex].charAt(charIndex);
+    charIndex++;
+    setTimeout(type, typingSpeed);
+  } else {
+    // Wait before deleting
+    setTimeout(deleteText, delayBetweenTexts);
+  }
+}
+
+function deleteText() {
+  if (charIndex > 0) {
+    typingElement.textContent = texts[textIndex].substring(0, charIndex - 1);
+    charIndex--;
+    setTimeout(deleteText, deletingSpeed);
+  } else {
+    // Move to next text
+    textIndex = (textIndex + 1) % texts.length;
+    setTimeout(type, typingSpeed);
+  }
+}
+
+// Start typing
+type();
+
+

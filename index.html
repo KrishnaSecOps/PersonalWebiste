@@ -15,22 +15,23 @@
   <div class="particles" id="particles"></div>
 
   <!-- NAVBAR -->
-  <nav id="mainNav" aria-label="Main navigation">
-    <div class="nav-links" role="navigation" aria-label="Primary">
-      <a href="#top"><i class="fa-solid fa-house"></i> Home</a>
-      <a href="#about"><i class="fa-solid fa-user"></i> About</a>
-      <a href="#skills"><i class="fa-solid fa-code"></i> Skills</a>
-      <a href="#experience"><i class="fa-solid fa-timeline"></i> Experience</a>
-      <a href="#projects"><i class="fa-solid fa-diagram-project"></i> Projects</a>
-      <a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a>
-    </div>
-  </nav>
+<nav id="mainNav" aria-label="Main navigation">
+  <div class="nav-links" role="navigation" aria-label="Primary">
+    <a href="#top"><i class="fa-solid fa-house"></i> <span class="link-text">Home</span></a>
+    <a href="#about"><i class="fa-solid fa-user"></i> <span class="link-text">About</span></a>
+    <a href="#skills"><i class="fa-solid fa-code"></i> <span class="link-text">Skills</span></a>
+    <a href="#experience"><i class="fa-solid fa-briefcase"></i> <span class="link-text">Experience</span></a>
+    <a href="#projects"><i class="fa-solid fa-diagram-project"></i> <span class="link-text">Projects</span></a>
+    <a href="#contact"><i class="fa-solid fa-envelope"></i> <span class="link-text">Contact</span></a>
+  </div>
+</nav>
+
 
   <!-- HERO -->
-  <main>
+  <main class="section">
     <section class="hero fade" id="top">
-      <h1>Hi, I'm Sai Krishna</h1>
-      <div class="typing" aria-label="Title">DevOps and Cloud Engineer</div>
+    <h1>Hi, I'm <span class="highlight-name">Sai Krishna</span></h1>
+      <div class="typing"></div>
     </section>
 
     <!-- ABOUT -->
@@ -45,28 +46,6 @@
       <p class="about-text">
         When I’m not optimizing systems, I’m exploring new tools, experimenting with infrastructure as code, and finding ways to make processes smarter and faster.
       </p>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section id="experience" class="fade">
-      <h2>Experience</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-content">
-            <h3>Senior DevOps Cloud Engineer — Capgemini</h3>
-            <span class="date">Oct 2021 — Present</span>
-            <p>Designed and maintained CI/CD pipelines, automated cloud provisioning with Terraform, and operated k8s clusters in production.</p>
-            <div class="tools">
-              <span class="tool">AWS</span>
-              <span class="tool">Terraform</span>
-              <span class="tool">Docker</span>
-              <span class="tool">Kubernetes</span>
-              <span class="tool">Jenkins</span>
-              <span class="tool">Ansible</span>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- SKILLS -->
@@ -84,7 +63,7 @@
     </div>
     <div class="tool-box">
       <img src="https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.png" alt="K8s">
-      <span>Kbernetes</span>
+      <span>Kubernetes</span>
     </div>
     <div class="tool-box">
       <img src="./png/jenkins.svg" alt="Jenkins">
@@ -96,7 +75,7 @@
       <span>Terraform</span>
     </div>
     <div class="tool-box">
-      <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub">
+      <img src="./png/icons8-github.svg" alt="GitHub">
       <span>GitHub</span>
     </div>
     <div class="tool-box">
@@ -178,6 +157,36 @@
   </div>
 </section>
 
+    <!-- EXPERIENCE -->
+     <section id="experience" class="fade">
+  <h2>Experience</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <h3 class="role">
+        <img src="../png/CAP.PA.svg" alt="Capgemini" class="role-icon" />
+        Senior DevOps Cloud Engineer - Capgemini
+      </h3>
+      
+      <div class="timeline-content">
+        <span class="date">Oct 2021 - Present</span>
+        <p>Worked on CI/CD pipelines, cloud infrastructure, and automation...</p>
+      </div>
+                  <div class="tools">
+              <span class="tool">AWS</span>
+              <span class="tool">Terraform</span>
+              <span class="tool">Docker</span>
+              <span class="tool">Kubernetes</span>
+              <span class="tool">Jenkins</span>
+              <span class="tool">Ansible</span>
+            </div>
+    </div>
+  </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
 
     <!-- PROJECTS -->
     <section id="projects" class="fade">
@@ -209,7 +218,7 @@
   </main>
 
   <footer>
-    © 2025 Sai Krishna — Built with ❤️
+    © 2025 Sai Krishna | DevOps & Cloud Engineer
   </footer>
 
   <!-- JS -->
