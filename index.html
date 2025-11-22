@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sai Krishna | DevOps & Cloud Engineer</title>
@@ -20,15 +22,13 @@ nav {
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
-  padding: 25px 10%;
+  padding: 20px 40px;
   display: flex;
-  justify-content: space-between;
-  align-items: left;
-  background: rgba(255, 255, 255, 0.05);
+  justify-content: center;     /* center everything */
+  align-items: center;         /* vertical center */
+  background: rgba(23, 22, 22, 0.05);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50px;
-  transition: 0.5s ease-in-out;
+
   z-index: 1000;
 }
 
@@ -39,7 +39,22 @@ nav a {
   color: #4da6ff;
   transition: 0.3s;
 }
-nav a:hover { color: #fff; }
+nav a i {
+  font-size: 16px;
+  transition: 0.3s;
+}
+nav a:hover{
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+
+
+/* optional hover glow */
+nav a:hover i {
+  color: #ffffff;
+  /* transform: translateY(-3px); */
+}
 
 /* SHRUNKN FLOATING CENTER NAV */
 nav.shrink {
@@ -48,8 +63,8 @@ nav.shrink {
   padding: 12px 30px;
   border-radius: 50px;
   background: rgba(20, 20, 40, 0.6);
-  border: 1px solid #4da6ff55;
-  box-shadow: 0 0 25px rgba(0, 150, 255, 0.2);
+  /* border: 1px solid #4da6ff55; */
+  /* box-shadow: 0 0 25px rgba(0, 150, 255, 0.2); */
 }
 
 /* Smaller text while floating */
@@ -142,8 +157,13 @@ nav.shrink .logo {
       .timer-box { font-size:36px; padding:22px; }
     }
     @media (max-width:560px) {
-      nav { top:12px; margin: 6px 3%; }
-      .nav-links { gap:10px; }
+      nav { top:20px; margin: 6px 3%; }
+      .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 100px;  /* spacing between links */
+    }
       .nav-links a { font-size:14px; }
       h1 { font-size:30px; }
       .typing { width:20px; }
@@ -152,20 +172,51 @@ nav.shrink .logo {
       .timer-box { width:92%; font-size:28px; }
       .profile-img { width:100px; height:100px; border-radius:12px; font-size:26px; }
     }
+        /* ---------- FLOATING PARTICLES ---------- */
+/* ---------- FLOATING PARTICLES ---------- */
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;   /* Send behind all content */
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: rgba(255,255,255,0.4);
+  border-radius: 50%;
+  animation: floatUp linear infinite;
+  filter: blur(1px);
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(100vh) scale(0.3); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
   </style>
 </head>
 <body>
-
+<div class="particles" id="particles"></div>
   <!-- GLASS NAVBAR -->
 <nav id="mainNav" aria-label="Main navigation">
-  <div class="logo">Sai Krishna</div>
   <div class="nav-links" role="navigation" aria-label="Primary">
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
+    <a href="#"><i class="fa-solid fa-house"></i> Home</a>
+    <a href="#about"><i class="fa-solid fa-user"></i> About</a>
+    <a href="#projects"><i class="fa-solid fa-code"></i> Skills</a>
+    <a href="#experience"><i class="fa-solid fa-timeline"></i> Experience</a>
+    <a href="#projects"><i class="fa-solid fa-diagram-project"></i> Projects</a>
+    <a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a>
   </div>
+  
 </nav>
+
 
 
   <!-- HERO -->
@@ -174,8 +225,8 @@ nav.shrink .logo {
       <!-- <div class="profile-img" aria-hidden="true">SK</div> -->
       <h1>Sai Krishna</h1>
       <div class="typing" aria-label="Title">DevOps & Cloud Engineer</div>
-      <a class="btn" href="#projects">View Projects</a>
     </section>
+
 
     <!-- ABOUT -->
     <section id="about" class="fade">
@@ -205,6 +256,15 @@ nav.shrink .logo {
             <p style="color:#cfe9ff;opacity:0.9;">Supported deployments, created automation scripts and assisted with monitoring and alerting.</p>
           </div>
         </div>
+      </div>
+    </section>
+    <!-- PROJECTS (Timer) -->
+    <section id="skills" class="fade">
+      <h2>Skills</h2>
+      <p class="sarcastic">Projects are baking — give me 24 hours. (Yes, I mean *developer time*.)</p>
+
+      <div class="timer-box" role="timer" aria-live="polite">
+        <span id="timer">Loading…</span>
       </div>
     </section>
 
@@ -290,6 +350,20 @@ nav.shrink .logo {
       nav.classList.remove("shrink");
     }
   });
+</script>
+<script>
+/* Floating particles generator */
+const container = document.getElementById("particles");
+
+for(let i=0; i<40; i++){
+  const p = document.createElement("div");
+  p.classList.add("particle");
+  p.style.left = Math.random() * 100 + "vw";
+  p.style.animationDuration = (6 + Math.random() * 10) + "s";
+  p.style.animationDelay = Math.random() * 5 + "s";
+  p.style.opacity = Math.random();
+  container.appendChild(p);
+}
 </script>
 
 </body>
