@@ -1,178 +1,143 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+/* ---------- GLOBAL ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', system-ui; }
+html,body { height: 100%; }
+body { background: linear-gradient(180deg,#07101a 0%, #0a0f1f 100%); color: #fff; overflow-x:hidden; }
 
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sai Krishna | DevOps & Cloud Engineer</title>
-  <style>
-    /* ---------- GLOBAL ---------- */
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Arial; }
-    html,body { height: 100%; }
-    body { background: linear-gradient(180deg,#07101a 0%, #0a0f1f 100%); color: #fff; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; overflow-x:hidden; }
+a { color: #4da6ff; text-decoration: none; }
 
-    a { color: #4da6ff; text-decoration: none; }
-
-    /* ---------- GLASS NAVBAR ---------- */
-/* NAVBAR DEFAULT (FULL WIDTH TOP) */
+/* ---------- GLASS NAVBAR ---------- */
 nav {
   position: fixed;
-  top: 20px;
+            top: 15px;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
-  padding: 20px 40px;
+  padding: 22px 50px;
   display: flex;
-  justify-content: center;     /* center everything */
-  align-items: center;         /* vertical center */
+  justify-content: center;
+  align-items: center;
   background: rgba(23, 22, 22, 0.05);
   backdrop-filter: blur(10px);
-
+  border-radius: 50px;
   z-index: 1000;
 }
 
-/* TEXT IN NAV */
+.nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 45px;
+}
+
 nav a {
-  margin-left: 20px;
   font-weight: 500;
   color: #4da6ff;
   transition: 0.3s;
+  font-size: 17px;
 }
+
 nav a i {
+  margin-right: 6px;
   font-size: 16px;
-  transition: 0.3s;
-}
-nav a:hover{
-  color: #ffffff;
-  transform: translateY(-3px);
 }
 
-
-
-/* optional hover glow */
-nav a:hover i {
-  color: #ffffff;
-  /* transform: translateY(-3px); */
-}
-
-/* SHRUNKN FLOATING CENTER NAV */
+/* Shrink effect */
 nav.shrink {
-  top: 20px;
-  width: 50%;
+  width: 55%;
   padding: 12px 30px;
   border-radius: 50px;
   background: rgba(20, 20, 40, 0.6);
-  /* border: 1px solid #4da6ff55; */
-  /* box-shadow: 0 0 25px rgba(0, 150, 255, 0.2); */
+}
+nav.shrink a { font-size: 14px; }
+
+/* ---------- HERO ---------- */
+.hero {
+  min-height: 90vh;
+  padding: 140px 6vw 40px;
+  display:flex; flex-direction:column; justify-content:center; text-align:center;
 }
 
-/* Smaller text while floating */
-nav.shrink a {
-  font-size: 15px;
+h1 { font-size:46px; }
+
+.typing {
+  font-size:18px;
+  border-right: 3px solid rgba(77,166,255,0.9);
+  white-space:nowrap;
+  overflow:hidden;
+  width:0;
+  animation: typing 4s steps(200) forwards, blink 0.2s infinite;
 }
-nav.shrink .logo {
-  font-size: 18px;
+
+@keyframes typing { from{ width:0 } to{ width:340px } }
+@keyframes blink { 50%{ border-color: transparent } }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+
+  nav {
+    width: 92%;
+    padding: 15px 25px;
+  }
+
+  .nav-links {
+    gap: 20px;          /* smaller spacing */
+    flex-wrap: wrap;    /* wrap links */
+    text-align: center;
+  }
+
+  nav a {
+    font-size: 13px;
+  }
+  
+  nav a i {
+    font-size: 14px;
+  }
+
+  .hero {
+    padding-top: 180px;
+  }
+
+  h1 { font-size: 32px; }
+
+  .typing {
+    font-size: 14px;
+    width: 240px;
+  }
+
+  section {
+    padding: 60px 4vw;
+  }
+
+  .timer-box {
+    font-size: 30px;
+  }
 }
 
+/* ---------- VERY SMALL DEVICES ---------- */
+@media (max-width: 480px) {
+  .nav-links {
+    gap: 14px;
+  }
+  
+  nav {
+    padding: 12px 18px;
+  }
 
-    /* ---------- HERO ---------- */
-    .hero {
-      min-height: 92vh;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      padding: 120px 6vw 40px;
-      text-align:center;
-    }
-    .profile-img {
-      width: 140px; height: 140px; border-radius: 18px;
-      display:flex; align-items:center; justify-content:center;
-      background: linear-gradient(180deg,#0f1720,#0a1117);
-      border: 1px solid rgba(255,255,255,0.04);
-      font-weight:800; font-size:38px; color:#dbeeff;
-      margin-bottom:18px;
-    }
-    h1 { font-size:48px; margin-bottom:6px; }
-    .typing {
-      font-size:18px; opacity:0.95;
-      border-right: 3px solid rgba(77,166,255,0.9);
-      white-space:nowrap; overflow:hidden; width:0;
-      animation: typing 4s steps(320) forwards, blink 0.2s infinite;
-    }
-    @keyframes typing { from{ width:0 } to{ width:380px } }
-    @keyframes blink { 50%{ border-color: transparent } }
+  h1 {
+    font-size: 26px;
+  }
 
-    .btn {
-      margin-top:18px;
-      display:inline-block;
-      padding:10px 18px;
-      border-radius:999px;
-      border:1px solid rgba(77,166,255,0.14);
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
-      color:#e6f5ff;
-      font-weight:700;
-      transition: transform .18s ease, background .18s ease;
-    }
-    .btn:hover{ transform: translateY(-6px); background: linear-gradient(90deg, rgba(77,166,255,0.12), rgba(77,166,255,0.06)); }
+  .typing {
+    font-size: 12px;
+    width: 200px;
+  }
 
-    /* ---------- SECTIONS & FADE ---------- */
-    section { padding: 100px 6vw; min-height: 40vh; }
-    .fade { opacity:0; transform: translateY(30px); transition: all 0.9s cubic-bezier(.2,.9,.3,1); }
-    .fade.show { opacity:1; transform: translateY(0); }
+  .particle {
+    width: 3px;
+    height: 3px;
+  }
+}
 
-    h2 { font-size:32px; text-align:center; margin-bottom:22px; color:#eaf6ff; }
-
-    /* ---------- TIMELINE ---------- */
-    .timeline { max-width:760px; margin: 24px auto 0; padding-left:22px; border-left:3px solid rgba(77,166,255,0.22); }
-    .timeline-item { position:relative; margin-bottom:36px; padding-left:18px; }
-    .timeline-item::before {
-      content:""; position:absolute; left:-12px; top:6px; width:14px; height:14px; border-radius:50%;
-      background: linear-gradient(90deg,#9ccfff,#4da6ff);
-      border: 2px solid rgba(255,255,255,0.06);
-    }
-    .timeline-content h3{ font-size:18px; margin-bottom:6px; color:#e6f7ff; }
-    .timeline-content .date{ font-size:13px; color: #b9cfe8; margin-bottom:8px; display:block; }
-
-    /* ---------- TIMER ---------- */
-    .timer-box {
-      max-width:560px; margin:12px auto 0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:12px; padding:28px 18px;
-      border:1px solid rgba(77,166,255,0.10);
-      text-align:center; font-weight:700; font-size:46px; color:#e6f7ff;
-      box-shadow: 0 12px 30px rgba(2,6,12,0.55);
-    }
-    .sarcastic { text-align:center; color:#ffdca8; margin-bottom:14px; font-weight:600; }
-
-    /* ---------- FOOTER ---------- */
-    footer { text-align:center; padding:34px 6vw; color:#cfe9ff; opacity:0.85; }
-
-    /* ---------- RESPONSIVE ---------- */
-    @media (max-width:900px) {
-      nav { margin: 8px 4%; padding:14px 18px; }
-      h1 { font-size:40px; }
-      .typing { animation: typing 4.5s steps(30) forwards; width:280px; }
-      .timer-box { font-size:36px; padding:22px; }
-    }
-    @media (max-width:560px) {
-      nav { top:20px; margin: 6px 3%; }
-      .nav-links {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 100px;  /* spacing between links */
-    }
-      .nav-links a { font-size:14px; }
-      h1 { font-size:30px; }
-      .typing { width:20px; }
-      section { padding:60px 5vw; }
-      .timeline { padding-left:18px; }
-      .timer-box { width:92%; font-size:28px; }
-      .profile-img { width:100px; height:100px; border-radius:12px; font-size:26px; }
-    }
-        /* ---------- FLOATING PARTICLES ---------- */
 /* ---------- FLOATING PARTICLES ---------- */
 .particles {
   position: fixed;
@@ -182,7 +147,7 @@ nav.shrink .logo {
   height: 100%;
   pointer-events: none;
   overflow: hidden;
-  z-index: -1;   /* Send behind all content */
+  z-index: -1;
 }
 
 .particle {
@@ -200,6 +165,7 @@ nav.shrink .logo {
   50% { opacity: 1; }
   100% { transform: translateY(-10vh) scale(1); opacity: 0; }
 }
+
   </style>
 </head>
 <body>
