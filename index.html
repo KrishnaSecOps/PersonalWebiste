@@ -1,278 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sai Krishna | DevOps & Cloud Engineer</title>
-  <style>
-    /* ---------- GLOBAL ---------- */
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Arial; }
-    html,body { height: 100%; }
-    body { background: linear-gradient(180deg,#07101a 0%, #0a0f1f 100%); color: #fff; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; overflow-x:hidden; }
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    a { color: #4da6ff; text-decoration: none; }
-
-    /* ---------- GLASS NAVBAR ---------- */
-/* NAVBAR DEFAULT (FULL WIDTH TOP) */
-nav {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  padding: 20px 40px;
-  display: flex;
-  justify-content: center;     /* center everything */
-  align-items: center;         /* vertical center */
-  background: rgba(23, 22, 22, 0.05);
-  backdrop-filter: blur(10px);
-
-  z-index: 1000;
-}
-
-/* TEXT IN NAV */
-nav a {
-  margin-left: 20px;
-  font-weight: 500;
-  color: #4da6ff;
-  transition: 0.3s;
-}
-nav a i {
-  font-size: 16px;
-  transition: 0.3s;
-}
-nav a:hover{
-  color: #ffffff;
-  transform: translateY(-3px);
-}
-
-
-
-/* optional hover glow */
-nav a:hover i {
-  color: #ffffff;
-  /* transform: translateY(-3px); */
-}
-
-/* SHRUNKN FLOATING CENTER NAV */
-nav.shrink {
-  top: 20px;
-  width: 50%;
-  padding: 12px 30px;
-  border-radius: 50px;
-  background: rgba(20, 20, 40, 0.6);
-  /* border: 1px solid #4da6ff55; */
-  /* box-shadow: 0 0 25px rgba(0, 150, 255, 0.2); */
-}
-
-/* Smaller text while floating */
-nav.shrink a {
-  font-size: 15px;
-}
-nav.shrink .logo {
-  font-size: 18px;
-}
-
-
-    /* ---------- HERO ---------- */
-    .hero {
-      min-height: 92vh;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      padding: 120px 6vw 40px;
-      text-align:center;
-    }
-    .profile-img {
-      width: 140px; height: 140px; border-radius: 18px;
-      display:flex; align-items:center; justify-content:center;
-      background: linear-gradient(180deg,#0f1720,#0a1117);
-      border: 1px solid rgba(255,255,255,0.04);
-      font-weight:800; font-size:38px; color:#dbeeff;
-      margin-bottom:18px;
-    }
-    h1 { font-size:48px; margin-bottom:6px; }
-    .typing {
-      font-size:18px; opacity:0.95;
-      border-right: 3px solid rgba(77,166,255,0.9);
-      white-space:nowrap; overflow:hidden; width:0;
-      animation: typing 4s steps(320) forwards, blink 0.2s infinite;
-    }
-    @keyframes typing { from{ width:0 } to{ width:380px } }
-    @keyframes blink { 50%{ border-color: transparent } }
-
-    .btn {
-      margin-top:18px;
-      display:inline-block;
-      padding:10px 18px;
-      border-radius:999px;
-      border:1px solid rgba(77,166,255,0.14);
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
-      color:#e6f5ff;
-      font-weight:700;
-      transition: transform .18s ease, background .18s ease;
-    }
-    .btn:hover{ transform: translateY(-6px); background: linear-gradient(90deg, rgba(77,166,255,0.12), rgba(77,166,255,0.06)); }
-
-    /* ---------- SECTIONS & FADE ---------- */
-    section { padding: 100px 6vw; min-height: 40vh; }
-    .fade { opacity:0; transform: translateY(30px); transition: all 0.9s cubic-bezier(.2,.9,.3,1); }
-    .fade.show { opacity:1; transform: translateY(0); }
-
-    h2 { font-size:32px; text-align:center; margin-bottom:22px; color:#eaf6ff; }
-
-    /* ---------- TIMELINE ---------- */
-    .timeline { max-width:760px; margin: 24px auto 0; padding-left:22px; border-left:3px solid rgba(77,166,255,0.22); }
-    .timeline-item { position:relative; margin-bottom:36px; padding-left:18px; }
-    .timeline-item::before {
-      content:""; position:absolute; left:-12px; top:6px; width:14px; height:14px; border-radius:50%;
-      background: linear-gradient(90deg,#9ccfff,#4da6ff);
-      border: 2px solid rgba(255,255,255,0.06);
-    }
-    .timeline-content h3{ font-size:18px; margin-bottom:6px; color:#e6f7ff; }
-    .timeline-content .date{ font-size:13px; color: #b9cfe8; margin-bottom:8px; display:block; }
-
-    /* ---------- TIMER ---------- */
-    .timer-box {
-      max-width:560px; margin:12px auto 0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:12px; padding:28px 18px;
-      border:1px solid rgba(77,166,255,0.10);
-      text-align:center; font-weight:700; font-size:46px; color:#e6f7ff;
-      box-shadow: 0 12px 30px rgba(2,6,12,0.55);
-    }
-    .sarcastic { text-align:center; color:#ffdca8; margin-bottom:14px; font-weight:600; }
-
-    /* ---------- FOOTER ---------- */
-    footer { text-align:center; padding:34px 6vw; color:#cfe9ff; opacity:0.85; }
-
-    /* ---------- RESPONSIVE ---------- */
-    @media (max-width:900px) {
-      nav { margin: 8px 4%; padding:14px 18px; }
-      h1 { font-size:40px; }
-      .typing { animation: typing 4.5s steps(30) forwards; width:280px; }
-      .timer-box { font-size:36px; padding:22px; }
-    }
-    @media (max-width:560px) {
-      nav { top:20px; margin: 6px 3%; }
-      .nav-links {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 100px;  /* spacing between links */
-    }
-      .nav-links a { font-size:14px; }
-      h1 { font-size:30px; }
-      .typing { width:20px; }
-      section { padding:60px 5vw; }
-      .timeline { padding-left:18px; }
-      .timer-box { width:92%; font-size:28px; }
-      .profile-img { width:100px; height:100px; border-radius:12px; font-size:26px; }
-    }
-        /* ---------- FLOATING PARTICLES ---------- */
-/* ---------- FLOATING PARTICLES ---------- */
-.particles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: -1;   /* Send behind all content */
-}
-
-.particle {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: rgba(255,255,255,0.4);
-  border-radius: 50%;
-  animation: floatUp linear infinite;
-  filter: blur(1px);
-}
-
-@keyframes floatUp {
-  0% { transform: translateY(100vh) scale(0.3); opacity: 0; }
-  50% { opacity: 1; }
-  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
-}
-  </style>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="./js/script.js"></script>
 </head>
 <body>
-<div class="particles" id="particles"></div>
-  <!-- GLASS NAVBAR -->
-<nav id="mainNav" aria-label="Main navigation">
-  <div class="nav-links" role="navigation" aria-label="Primary">
-    <a href="#"><i class="fa-solid fa-house"></i> Home</a>
-    <a href="#about"><i class="fa-solid fa-user"></i> About</a>
-    <a href="#projects"><i class="fa-solid fa-code"></i> Skills</a>
-    <a href="#experience"><i class="fa-solid fa-timeline"></i> Experience</a>
-    <a href="#projects"><i class="fa-solid fa-diagram-project"></i> Projects</a>
-    <a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a>
-  </div>
-  
-</nav>
+  <div class="particles" id="particles"></div>
 
-
+  <!-- NAVBAR -->
+  <nav id="mainNav" aria-label="Main navigation">
+    <div class="nav-links" role="navigation" aria-label="Primary">
+      <a href="#top"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="#about"><i class="fa-solid fa-user"></i> About</a>
+      <a href="#skills"><i class="fa-solid fa-code"></i> Skills</a>
+      <a href="#experience"><i class="fa-solid fa-timeline"></i> Experience</a>
+      <a href="#projects"><i class="fa-solid fa-diagram-project"></i> Projects</a>
+      <a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a>
+    </div>
+  </nav>
 
   <!-- HERO -->
   <main>
     <section class="hero fade" id="top">
-      <!-- <div class="profile-img" aria-hidden="true">SK</div> -->
-      <h1>Sai Krishna</h1>
-      <div class="typing" aria-label="Title">DevOps & Cloud Engineer</div>
+      <h1>Hi, I'm Sai Krishna</h1>
+      <div class="typing" aria-label="Title">DevOps and Cloud Engineer</div>
     </section>
-
 
     <!-- ABOUT -->
     <section id="about" class="fade">
       <h2>About Me</h2>
-      <p style="max-width:860px;margin:0 auto;text-align:center;color:#dbeeff;">
-        I'm a DevOps & Cloud Engineer focused on automation, infrastructure-as-code, CI/CD and observability.
-        I build pipelines that deploy reliably, scale automatically and recover gracefully.
+      <p class="about-text">
+        I am a DevOps engineer passionate about building seamless, automated, and scalable systems. I specialize in bridging development and operations to accelerate software delivery, optimize infrastructure, and ensure reliability.
+      </p>
+      <p class="about-text">
+        I thrive on challenges that involve automation, cloud technologies, CI/CD pipelines, and monitoring solutions. My focus is on creating efficient workflows, driving innovation, and delivering solutions that make a tangible impact.
+      </p>
+      <p class="about-text">
+        When I’m not optimizing systems, I’m exploring new tools, experimenting with infrastructure as code, and finding ways to make processes smarter and faster.
       </p>
     </section>
 
-    <!-- EXPERIENCE (Timeline) -->
+    <!-- EXPERIENCE -->
     <section id="experience" class="fade">
       <h2>Experience</h2>
-      <div class="timeline" aria-hidden="false">
+      <div class="timeline">
         <div class="timeline-item">
           <div class="timeline-content">
-            <h3>DevOps & Cloud Engineer — Company Name</h3>
-            <span class="date">2023 — Present</span>
-            <p style="color:#cfe9ff;opacity:0.9;">Designed and maintained CI/CD pipelines, automated cloud provisioning with Terraform, and operated k8s clusters in production.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-content">
-            <h3>Cloud Intern — Previous Company</h3>
-            <span class="date">2022 — 2023</span>
-            <p style="color:#cfe9ff;opacity:0.9;">Supported deployments, created automation scripts and assisted with monitoring and alerting.</p>
+            <h3>Senior DevOps Cloud Engineer — Capgemini</h3>
+            <span class="date">Oct 2021 — Present</span>
+            <p>Designed and maintained CI/CD pipelines, automated cloud provisioning with Terraform, and operated k8s clusters in production.</p>
+            <div class="tools">
+              <span class="tool">AWS</span>
+              <span class="tool">Terraform</span>
+              <span class="tool">Docker</span>
+              <span class="tool">Kubernetes</span>
+              <span class="tool">Jenkins</span>
+              <span class="tool">Ansible</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- PROJECTS (Timer) -->
+
+    <!-- SKILLS -->
     <section id="skills" class="fade">
       <h2>Skills</h2>
-      <p class="sarcastic">Projects are baking — give me 24 hours. (Yes, I mean *developer time*.)</p>
-
-      <div class="timer-box" role="timer" aria-live="polite">
-        <span id="timer">Loading…</span>
+      <p class="sarcastic">Here are some tools I work with regularly:</p>
+      <div class="tools-container">
+        <div class="tool-box"><i class="fa-brands fa-docker"></i><span>Docker</span></div>
+        <div class="tool-box"><i class="fa-brands fa-kubernetes"></i><span>K8s</span></div>
+        <div class="tool-box"><i class="fa-solid fa-cubes"></i><span>Terraform</span></div>
+        <div class="tool-box"><i class="fa-brands fa-jenkins"></i><span>Jenkins</span></div>
+        <div class="tool-box"><i class="fa-brands fa-aws"></i><span>AWS</span></div>
+        <div class="tool-box"><i class="fa-brands fa-github"></i><span>GitHub</span></div>
+        <div class="tool-box"><i class="fa-solid fa-server"></i><span>Ansible</span></div>
+        <div class="tool-box"><i class="fa-solid fa-chart-line"></i><span>Prometheus</span></div>
       </div>
     </section>
 
-    <!-- PROJECTS (Timer) -->
+    <!-- PROJECTS -->
     <section id="projects" class="fade">
       <h2>Projects</h2>
       <p class="sarcastic">Projects are baking — give me 24 hours. (Yes, I mean *developer time*.)</p>
-
       <div class="timer-box" role="timer" aria-live="polite">
         <span id="timer">Loading…</span>
       </div>
@@ -280,91 +97,6 @@ nav.shrink .logo {
 
     <!-- CONTACT -->
     <section id="contact" class="fade">
-      <h2>Contact</h2>
-      <p style="text-align:center;color:#dbeeff;">Email: <a href="mailto:someone@mail.com">someone@mail.com</a> • GitHub: <a href="#" aria-label="GitHub profile">github.com/yourprofile</a></p>
-    </section>
-  </main>
-
-  <footer>
-    © 2025 Sai Krishna — Built with ❤️
-  </footer>
-
-  <!-- ---------- SCRIPTS ---------- -->
-  <script>
-    /* Fade-in on scroll (Intersection Observer) */
-    (function() {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) e.target.classList.add('show');
-        });
-      }, { threshold: 0.25 });
-
-      document.querySelectorAll('.fade').forEach(el => observer.observe(el));
-    })();
-
-    /* 24-hour timer (resets at local midnight) */
-    (function() {
-      function pad(n){ return n.toString().padStart(2,'0'); }
-      function updateTimer() {
-        const now = new Date();
-        const midnight = new Date(now);
-        midnight.setHours(24,0,0,0);
-        const diff = midnight - now;
-        if (diff <= 0) { document.getElementById('timer').textContent = '00:00:00'; return; }
-        const h = Math.floor(diff / (1000*60*60));
-        const m = Math.floor((diff % (1000*60*60)) / (1000*60));
-        const s = Math.floor((diff % (1000*60)) / 1000);
-        document.getElementById('timer').textContent = `${pad(h)}:${pad(m)}:${pad(s)}`;
-      }
-      updateTimer();
-      setInterval(updateTimer, 1000);
-    })();
-
-    /* Navbar shrink on scroll */
-    (function(){
-      const nav = document.getElementById('mainNav');
-      const threshold = 120;
-      let ticking = false;
-      function onScroll(){
-        if (!ticking) {
-          window.requestAnimationFrame(() => {
-            if (window.scrollY > threshold) nav.classList.add('shrink');
-            else nav.classList.remove('shrink');
-            ticking = false;
-          });
-          ticking = true;
-        }
-      }
-      window.addEventListener('scroll', onScroll, { passive:true });
-      // initial check
-      if (window.scrollY > threshold) nav.classList.add('shrink');
-    })();
-  </script>
-  <script>
-  const nav = document.getElementById("mainNav");
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 120) {
-      nav.classList.add("shrink");
-    } else {
-      nav.classList.remove("shrink");
-    }
-  });
-</script>
-<script>
-/* Floating particles generator */
-const container = document.getElementById("particles");
-
-for(let i=0; i<40; i++){
-  const p = document.createElement("div");
-  p.classList.add("particle");
-  p.style.left = Math.random() * 100 + "vw";
-  p.style.animationDuration = (6 + Math.random() * 10) + "s";
-  p.style.animationDelay = Math.random() * 5 + "s";
-  p.style.opacity = Math.random();
-  container.appendChild(p);
-}
-</script>
-
-</body>
-</html>
+      <h2>Contact Me</h2>
+      <div class="contact-icons">
+        <a href="mailto:gandlurusaikrishna.devops@g
